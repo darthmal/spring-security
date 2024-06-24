@@ -1,31 +1,28 @@
-package com.salam.spring_security.models.cart;
-
+package com.salam.spring_security.models.order;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.salam.spring_security.models.product.Product;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cart_items")
-public class CartItems {
+@Table(name = "order_items")
+@Getter
+@Setter
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "order_id", nullable = false)
     @JsonIgnore
-    private Cart cart;
+    private Order order;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
@@ -33,4 +30,5 @@ public class CartItems {
 
     private int quantity;
 
+    private Double price; // Price at the time of ordering
 }

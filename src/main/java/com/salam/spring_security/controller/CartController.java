@@ -1,6 +1,7 @@
 package com.salam.spring_security.controller;
 
 import com.salam.spring_security.models.cart.Cart;
+import com.salam.spring_security.models.cart.CartItems;
 import com.salam.spring_security.services.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,15 +42,22 @@ public class CartController {
     }
 
     @PutMapping("/items/{cartItemId}")
-    public ResponseEntity<Void> updateCartItemQuantity(@PathVariable Integer cartItemId,
+    public ResponseEntity<CartItems> updateCartItemQuantity(@PathVariable Integer cartItemId,
                                                        @RequestParam int quantity) {
-        cartService.updateCartItemQuantity(cartItemId, quantity);
-        return ResponseEntity.ok().build();
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        String username = userDetails.getUsername();
+        CartItems item = cartService.updateCartItemQuantity(cartItemId, quantity, username);
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
+//        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/items/{cartItemId}")
     public ResponseEntity<String> removeItemFromCart(@PathVariable Integer cartItemId) {
-        cartService.removeItemFromCart(cartItemId);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        String username = userDetails.getUsername();
+        cartService.removeItemFromCart(cartItemId, username);
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.ACCEPTED);
     }
 }
