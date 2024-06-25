@@ -5,6 +5,7 @@ import com.salam.spring_security.models.order.Order;
 import com.salam.spring_security.services.order.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,7 @@ public class OrderController {
     }
 
     @PostMapping
+//    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Order> newOrder() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();

@@ -53,11 +53,11 @@ public class CartController {
     }
 
     @DeleteMapping("/items/{cartItemId}")
-    public ResponseEntity<String> removeItemFromCart(@PathVariable Integer cartItemId) {
+    public ResponseEntity<Void> removeItemFromCart(@PathVariable Integer cartItemId) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         String username = userDetails.getUsername();
         cartService.removeItemFromCart(cartItemId, username);
-        return new ResponseEntity<>("Deleted Successfully", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

@@ -59,6 +59,10 @@ public class OrderService {
         orderItems.forEach(order::addOrderItem);
         orderRepository.save(order);
 
+        // Delete all items from the cart
+        cart.getCartItems().forEach(cartItems -> {
+            cartService.removeItemFromCart(cartItems.getId(), username);
+        });
         return order;
     }
 
