@@ -24,23 +24,7 @@ public class SpringSecurityApplication {
 	@Bean
 	CommandLineRunner run(UserService userService, UserRepository userRespo, PasswordEncoder passwordEncoder) { // Inject UserService
 		return args -> {
-			// Your existing key generation code:
-			try {
-				KeyPairGenerator keyGen = KeyPairGenerator.getInstance("EC");
-				ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256r1");
-				keyGen.initialize(ecSpec, new SecureRandom());
-				KeyPair keyPair = keyGen.generateKeyPair();
-				PrivateKey privateKey = keyPair.getPrivate();
-				PublicKey publicKey = keyPair.getPublic();
-				String privateKeyString = Base64.getEncoder().encodeToString(privateKey.getEncoded());
-				String publicKeyString = Base64.getEncoder().encodeToString(publicKey.getEncoded());
 
-				System.out.println("Private Key: " + privateKeyString);
-				System.out.println("Public Key: " + publicKeyString);
-
-			} catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException e) {
-				System.err.println("Error generating keys: " + e.getMessage());
-			}
 
 			// Default admin user creation:
 			if (userService.finUserByUsername("admin").isEmpty()) {
