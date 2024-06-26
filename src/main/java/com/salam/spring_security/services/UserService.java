@@ -18,4 +18,8 @@ public class UserService {
     public User getCurrentUser(String username) {
         return userRepository.findByUsername(username).orElseThrow();
     }
+
+    public Optional<User> finUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
