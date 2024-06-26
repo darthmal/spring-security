@@ -32,7 +32,9 @@ public class SecurityConfiguration {
             "/cart",
             "/cart/**",
             "/orders",
-            "/orders/**"
+            "/orders/**",
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
     };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
