@@ -30,7 +30,7 @@ public class SpringSecurityApplication {
 				adminUser.setLastName("Admin");
 				adminUser.setEmail("admin@example.com");
 				adminUser.setUsername("admin");
-				adminUser.setPassword(passwordEncoder.encode("admin")); // In a real app, hash the password!
+				adminUser.setPassword(passwordEncoder.encode("admin"));
 				adminUser.setRole(Role.ADMIN);
 
 				userRespo.save(adminUser);
