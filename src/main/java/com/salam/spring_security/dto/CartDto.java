@@ -9,6 +9,6 @@ import java.util.List;
 @Setter
 public class CartDto {
     private Long id;
-    private Long userId; // You might use UserDto here for more details
+    private Long userId;
     private List<CartItemDto> cartItems;
 }

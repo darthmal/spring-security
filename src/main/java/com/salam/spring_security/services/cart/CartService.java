@@ -57,28 +57,21 @@ public class CartService {
     // Get cart for the currently logged-in user
     public Cart getCurrentUserCart(String username) {
         User currentUser = userService.getCurrentUser(username);
-        return currentUser.getCart(); // Assuming one-to-one with User
+        return currentUser.getCart();
     }
 
     // Update item quantity in cart
     public CartItems updateCartItemQuantity(Integer cartItemId, int quantity, String username) {
-//        CartItems cartItem = cartItemRepository.findById(cartItemId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Cart Item"," not found", ""));
         Cart cart = getCurrentUserCart(username);
-        // Additional checks (e.g., stock availability) can be added here
 
-        // Find the cart item within the current user's cart
         CartItems cartItem = cart.getCartItems().stream()
                 .filter(item -> item.getId().equals(cartItemId))
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("Cart Item"," not found", ""));
 
-        // Additional checks (e.g., stock availability) can be added here
 
         cartItem.setQuantity(quantity);
         return cartItemRepository.save(cartItem);
-//        cartItem.setQuantity(quantity);
-//        cartItemRepository.save(cartItem);
     }
 
     // Remove item from cart

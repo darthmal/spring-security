@@ -28,10 +28,6 @@ public class ProductController {
 
     @GetMapping("{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Integer id) {
-//        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//        String username = userDetails.getUsername();
-//        System.out.println(username);
         return new ResponseEntity<Product>(productService.getProductById(id), HttpStatus.FOUND);
     }
 

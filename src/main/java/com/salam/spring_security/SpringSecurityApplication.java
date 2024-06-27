@@ -11,12 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.security.*;
-import java.security.spec.ECGenParameterSpec;
-import java.util.Base64;
 
 @SpringBootApplication
 public class SpringSecurityApplication {
-	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+	public static void main(String[] args)  {
 		SpringApplication.run(SpringSecurityApplication.class, args);
 	}
 
@@ -24,7 +22,6 @@ public class SpringSecurityApplication {
 	@Bean
 	CommandLineRunner run(UserService userService, UserRepository userRespo, PasswordEncoder passwordEncoder) { // Inject UserService
 		return args -> {
-
 
 			// Default admin user creation:
 			if (userService.finUserByUsername("admin").isEmpty()) {
