@@ -17,6 +17,7 @@ public class InternetConnectionController {
         this.internetConnectionService = internetConnectionService;
     }
 
+
     @GetMapping("/check")
     public ResponseEntity<Boolean> checkInternetConnection() {
         boolean isAvailable = internetConnectionService.isInternetAvailable();
