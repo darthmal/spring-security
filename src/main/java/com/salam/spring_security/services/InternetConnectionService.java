@@ -12,10 +12,6 @@ import java.net.URLConnection;
 public class InternetConnectionService {
 
     public boolean isInternetAvailable() {
-//        try {
-//            InetAddress address = InetAddress.getByName("google.com"); // Or any reliable host
-//            return address.isReachable(5000); // Timeout set to 5 seconds
-
             try {
                 final URL url = new URL("http://www.google.com");
                 final URLConnection conn = url.openConnection();
