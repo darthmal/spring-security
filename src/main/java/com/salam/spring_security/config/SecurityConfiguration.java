@@ -31,7 +31,8 @@ public class SecurityConfiguration {
             "/orders",
             "/orders/**",
             "/v3/api-docs/**",
-            "/swagger-ui/**"
+            "/swagger-ui/**",
+            "/connection/check"
     };
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
